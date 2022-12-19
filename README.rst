@@ -31,9 +31,9 @@ deployment generator under ``arcana.data.<your-extension>`` and
 can be used to put any utility functions, noting that the version of the extension
 will be written to ``arcana.utils.<your-extension>._version.py``.
 
-The extension is configured in the ``pyproject.tom`` file. If you omit one of the
-potential extension points (i.e. analysis, data, deploy or utils), you should remove
-it from the namespace_packages setting in [tool.flit.metadata] Section.
+The extension is configured in the ``pyproject.toml`` file. If you omit one of the
+potential extension points (i.e. "analysis", "data", "deploy" or "utils"), you should
+remove it from the ``namespace_packages`` setting in the "[tool.flit.metadata] Section".
 
 
 Quick Installation
