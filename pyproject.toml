@@ -51,7 +51,13 @@ name = "arcana"
 
 [tool.flit.metadata]
 namespace = "arcana"
-namespace_packages = ["analysis.TODO", "data.TODO", "deploy.TODO", "utils.TODO"]
+namespace_packages = [
+    "analysis.TODO",
+    "cli.TODO",
+    "data.TODO",
+    "deploy.TODO",
+    "utils.TODO"
+]
 
 [tool.flit.sdist]
 exclude = [".gitignore"]

@@ -17,17 +17,19 @@ search for "TODO" and replace it with the name of your package to update the pac
 settings. Also, update the author and maintainer tags in the "[project]" Section of the
 the ``pyproject.toml``.
 
-The extension defines 4 optional sub-packages that should be renamed from *todo* to the
+The extension defines 5 optional sub-packages that should be renamed from *todo* to the
 name of your extension package:
 
 * arcana.analysis.*todo*
+* arcana.cli.*todo*
 * arcana.data.*todo*
 * arcana.deploy.*todo*
 * arcana.utils.*todo*
 
 Typically an extension package will either implement new analysis classes under
-``arcana.analysis.<your-extension>`` or a new repository connector and associated
-deployment generator under ``arcana.data.<your-extension>`` and
+``arcana.analysis.<your-extension>``, or a classes and commands required to connect
+and/or deploy pipelines to a new type of data store (e.g. XNAT) under
+``arcana.cli.<your-extension>``, ``arcana.data.<your-extension>`` and
 ``arcana.deploy.<your-extension>``, respectively. ``arcana.utils.<your-extension>``
 can be used to put any utility functions, noting that the version of the extension
 will be written to ``arcana.utils.<your-extension>._version.py``.
