@@ -14,7 +14,8 @@ to provide your own extension to the Arcana_ framework.
 
 After creating a new extension repository from this template, firstly do a global
 search for "TODO" and replace it with the name of your package to update the package
-settings.
+settings. Also, update the author and maintainer tags in the "[project]" Section of the
+the ``pyproject.toml``.
 
 The extension defines 4 optional sub-packages that should be renamed from *todo* to the
 name of your extension package:
