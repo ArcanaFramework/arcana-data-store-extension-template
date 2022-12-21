@@ -21,7 +21,7 @@ The extension defines 5 optional sub-packages that should be renamed from *todo*
 name of your extension package:
 
 * arcana.analysis.*todo*
-* arcana.cli.*todo*
+* arcana.core.cli.*todo*
 * arcana.data.*todo*
 * arcana.deploy.*todo*
 * arcana.utils.*todo*
@@ -29,7 +29,7 @@ name of your extension package:
 Typically an extension package will either implement new analysis classes under
 ``arcana.analysis.<your-extension>``, or a classes and commands required to connect
 and/or deploy pipelines to a new type of data store (e.g. XNAT) under
-``arcana.cli.<your-extension>``, ``arcana.data.<your-extension>`` and
+``arcana.core.cli.<your-extension>``, ``arcana.data.<your-extension>`` and
 ``arcana.deploy.<your-extension>``, respectively. ``arcana.utils.<your-extension>``
 can be used to put any utility functions, noting that the version of the extension
 will be written to ``arcana.utils.<your-extension>._version.py``.
