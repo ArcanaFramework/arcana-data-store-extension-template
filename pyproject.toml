@@ -7,7 +7,9 @@ name = "arcana-TODO"
 description = "Description for arcana-TODO goes here"
 readme = "README.rst"
 requires-python = ">=3.8"
-dependencies = ["arcana >=2.0b"]
+dependencies = [
+    "arcana >=2.0b"
+]
 license = {file = "LICENSE"}
 authors = [{name = "YOUR-NAME", email = "YOUR-EMAIL"}]
 maintainers = [{name = "YOUR-NAME", email = "YOUR-EMAIL"}]
@@ -26,7 +28,7 @@ dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
-    "black",
+    # "black",
     "pre-commit",
 ]
 doc = [
@@ -47,17 +49,7 @@ test = [
 ]
 
 [tool.flit.module]
-name = "arcana"
-
-[tool.flit.metadata]
-namespace = "arcana"
-namespace_packages = [
-    "analysis.TODO",
-    "cli.TODO",
-    "data.TODO",
-    "deploy.TODO",
-    "utils.TODO"
-]
+name = "arcana.todo"
 
 [tool.flit.sdist]
 exclude = [".gitignore"]
