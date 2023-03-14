@@ -1,18 +1,18 @@
 [build-system]
-requires = ["flit_scm"]
-build-backend = "flit_scm:buildapi"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [project]
-name = "arcana-TODO"
-description = "Description for arcana-TODO goes here"
+name = "arcana-changeme"
+description = "Description for arcana-changeme goes here"
 readme = "README.rst"
 requires-python = ">=3.8"
 dependencies = [
-    "arcana >=2.0b"
+    "arcana >=0.9.4"
 ]
 license = {file = "LICENSE"}
-authors = [{name = "YOUR-NAME", email = "YOUR-EMAIL"}]
-maintainers = [{name = "YOUR-NAME", email = "YOUR-EMAIL"}]
+authors = [{name = "CHANGE-TO-YOUR-NAME", email = "CHANGE-TO-YOUR-EMAIL"}]
+maintainers = [{name = "CHANGE-TO-YOUR-NAME", email = "CHANGE-TO-YOUR-EMAIL"}]
 keywords = ["arcana"]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -28,18 +28,21 @@ dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
-    # "black",
+    "black",
+    "codespell",
+    "flake8",
+    "flake8-pyproject",
     "pre-commit",
 ]
 doc = [
-    "packaging",
     "docutils>=0.10",
+    "furo>=2022.2.14.1",
     "mock>1.0",
+    "numpydoc>=0.6.0",
+    "packaging",
     "sphinx >=2.1.2",
     "sphinx-argparse>=0.2.0",
     "sphinx-click>=3.1",
-    "furo>=2022.2.14.1",
-    "numpydoc>=0.6.0",
 ]
 test = [
     "pytest >= 4.4.0",
@@ -49,13 +52,13 @@ test = [
 ]
 
 [tool.flit.module]
-name = "arcana.todo"
+name = "arcana.changeme"
 
 [tool.flit.sdist]
 exclude = [".gitignore"]
 
 [tool.setuptools_scm]
-write_to = "arcana/utils/TODO/_version.py"
+write_to = "arcana/utils/changeme/_version.py"
 
 [tool.black]
 line-length = 88
