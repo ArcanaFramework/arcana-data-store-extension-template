@@ -50,7 +50,7 @@ class ExampleRemote(RemoteStore):
     def save_dataset_definition(
         self, dataset_id: str, definition: dict[str, ty.Any], name: str
     ):
-        """Save definition of dataset within the store
+        """Save definition of a dataset within the store
 
         Parameters
         ----------
