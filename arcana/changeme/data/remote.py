@@ -230,24 +230,29 @@ class ExampleRemote(RemoteStore):
 
         Parameters
         ----------
-        field : Field
-            The field to retrieve the value for
+        entry : DataEntry
+            The data entry to retrieve the value from
 
         Returns
         -------
-        value : int or float or str or list[int] or list[float] or list[str]
+        value : float or int or str or list[float] or list[int] or list[str]
             The value of the Field
         """
         raise NotImplementedError
 
-    def upload_value(self, value, entry: DataEntry):
-        """
-        Inserts or updates the field's value in the store
+    def upload_value(
+        self,
+        value: ty.Union[float, int, str, list[float], list[int], list[str]],
+        entry: DataEntry,
+    ):
+        """Store the value for a field in the XNAT repository
 
         Parameters
         ----------
-        field : Field
-            The field to insert into the store
+        value : ty.Union[float, int, str, list[float], list[int], list[str]]
+            the value to store in the entry
+        entry : DataEntry
+            the entry to store the value in
         """
         raise NotImplementedError
 
