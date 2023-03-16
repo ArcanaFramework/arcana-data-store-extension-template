@@ -22,24 +22,24 @@ How to Customise
 After creating a new repository on GitHub from this template, there are a few things you
 will need to change:
 
-#. do a global search and replace (across all file-types) for 'changeme' and replace it
+* do a global search and replace (across all file-types) for 'changeme' and replace it
 with the proposed name for your extension
-#. change the author and maintainer tags in the "[project]" Section of the
+* change the author and maintainer tags in the "[project]" Section of the
 the ``pyproject.toml`` to your name and email address
-#. There are two template classes for the data store connector ``data.local.ExampleLocal``
+* There are two template classes for the data store connector ``data.local.ExampleLocal``
 for data stored on the local file-system in a specific structure (e.g. BIDS), and
 ``data.remote.ExampleRemote`` for data stored in remote data repositories. Keep the relevant
 class(es) and rename it(them) to an appropriate name(s)
-#. do a global search and replace to update the code to use the new names for ``ExampleLocal``
+* do a global search and replace to update the code to use the new names for ``ExampleLocal``
 and/or ``ExampleRemote`` you have adopted
-#. install a local development copy of your extension with ``pip install -e .[dev,test]``
-#. Implement the method stubs in your adopted classes, uncommenting corresponding unittests
+* install a local development copy of your extension with ``pip install -e .[dev,test]``
+* Implement the method stubs in your adopted classes, uncommenting corresponding unittests
 in neighbouring ``tests/*.py`` modules to test until all unittests pass
-#. Change the address of the test action badge at the top of this file to point to your
+* Change the address of the test action badge at the top of this file to point to your
 new repository and uncomment out the other badges
-#. Delete this text and above and uncomment the default contents of this README below,
+* Delete this text and above and uncomment the default contents of this README below,
 adding in any relevant information about the extension (checking the license is appropriate).
-#. Create a new release on GitHub to deploy your new package to PyPI
+* Create a new release on GitHub to deploy your new package to PyPI
 
 
 .. This is a template repository for extensions to the Arcana_ framework to add support
