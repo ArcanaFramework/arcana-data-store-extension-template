@@ -1,12 +1,13 @@
 Arcana Extension - changeme
 ===========================
-.. .. image:: https://github.com/arcanaframework/arcana-changeme/actions/workflows/tests.yml/badge.svg
-..    :target: https://github.com/arcanaframework/arcana-changeme/actions/workflows/tests.yml
+.. CHANGEME, update the test actions badge to the name of your repo
+.. image:: https://github.com/arcanaframework/arcana-data-store-extension-template/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/arcanaframework/arcana-data-store-extension-template/actions/workflows/tests.yml
 .. .. image:: https://codecov.io/gh/arcanaframework/arcana-changeme/branch/main/graph/badge.svg?token=UIS0OGPST7
 ..    :target: https://codecov.io/gh/arcanaframework/arcana-changeme
-.. image:: https://readthedocs.org/projects/arcana/badge/?version=latest
-  :target: http://arcana.readthedocs.io/en/latest/?badge=latest
-  :alt: Documentation Status
+.. image:: https://github.com/ArcanaFramework/arcana/actions/workflows/docs.yml/badge.svg
+   :target: http://arcana.readthedocs.io/en/latest/?badge=latest
+   :alt: Docs
 
 
 This is a template repository for extensions to the Arcana_ framework to add support
