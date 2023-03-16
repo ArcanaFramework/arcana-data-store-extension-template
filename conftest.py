@@ -175,8 +175,8 @@ def install_and_launch_app(
     timeout: int = 1000,  # seconds
     poll_interval: int = 10,  # seconds
 ) -> tuple[int, str, str]:
-    """Installs a new command for the XNAT container service and lanches it on
-    the specified session.
+    """Installs a new command to be run in the integrated workflow engine of the "changeme"
+    data store, then launches it on the specified row with the provided inputs.
 
     Parameters
     ----------
