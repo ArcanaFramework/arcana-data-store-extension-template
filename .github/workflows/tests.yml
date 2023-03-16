@@ -33,13 +33,13 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - name: Update build tools
-      run: python -m pip install --upgrade pip flit_scm
+      run: python -m pip install --upgrade pip
 
     - name: Install Arcana
       run: python -m pip install .[test]
 
     - name: Pytest
-      run: pytest -vvs --cov arcana  --cov-config .coveragerc --cov-report xml
+      run: pytest -vvs --cov arcana.changeme  --cov-config .coveragerc --cov-report xml
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2

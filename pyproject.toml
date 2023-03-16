@@ -11,8 +11,8 @@ dependencies = [
     "arcana >=0.9.4"
 ]
 license = {file = "LICENSE"}
-authors = [{name = "CHANGE-TO-YOUR-NAME", email = "CHANGE-TO-YOUR-EMAIL"}]
-maintainers = [{name = "CHANGE-TO-YOUR-NAME", email = "CHANGE-TO-YOUR-EMAIL"}]
+authors = [{name = "Change Me", email = "changeme@changeme.com"}]
+maintainers = [{name = "Change Me", email = "changeme@changeme.com"}]
 keywords = ["arcana"]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -51,14 +51,24 @@ test = [
     "codecov",
 ]
 
-[tool.flit.module]
-name = "arcana.changeme"
+[project.urls]
+documentation = "https://arcana.readthedocs.io"
+homepage = "https://arcana.readthedocs.io"
+# repository = "https://github.com/ArcanaFramework/arcana-changeme.git"
 
-[tool.flit.sdist]
-exclude = [".gitignore"]
+[tool.hatch.version]
+source = "vcs"
 
-[tool.setuptools_scm]
-write_to = "arcana/utils/changeme/_version.py"
+[tool.hatch.build.hooks.vcs]
+version-file = "arcana/changeme/_version.py"
+
+[tool.hatch.build]
+packages = [
+    "arcana",
+]
+exclude = [
+    "/tests",
+]
 
 [tool.black]
 line-length = 88

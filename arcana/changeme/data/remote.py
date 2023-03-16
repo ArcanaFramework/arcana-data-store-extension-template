@@ -19,6 +19,11 @@ class ExampleRemote(RemoteStore):
     ----------
     """
 
+    # Uncomment if the remote store supports datasets with specific data space/hierarchy,
+    # or have obvious defaults
+    # DEFAULT_SPACE = Clinical
+    # DEFAULT_HIERARCHY = ["subject", "timepoint"]
+
     #############################
     # DataStore abstractmethods #
     #############################
