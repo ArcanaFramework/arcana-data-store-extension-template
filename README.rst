@@ -24,7 +24,7 @@ will need to change:
 
 * do a global search and replace (across all file-types) for **changeme** and replace it with the proposed name for your extension
 * change the author and maintainer tags in the **[project]** Section of the the ``pyproject.toml`` to your name and email address
-* there are 4 classes within this template repostiory, which need to be either adapted and renamed (using global search & replace) or removed
+* there are 4 classes within this template repostiory, which need to be either adapted and renamed (using global search and replace) or removed
     * ``data.local.ExampleLocal`` for data stored on the local file-system in a specific structure (e.g. BIDS)
     * ``data.remote.ExampleRemote`` for data stored in remote data repositories. 
     * ``deploy.app.ExampleApp`` for specifying containerized apps that can be executed on data within the data store
