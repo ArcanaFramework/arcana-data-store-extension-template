@@ -14,7 +14,7 @@ Arcana Extension - changeme
     :target: http://arcana.readthedocs.io/en/latest/?badge=latest
     :alt: Docs
 
-This repository contains a template implementation of Arcana_ `DataStore` and class
+This repository contains a template implementation of `DataStore` and `App` extension classes for the Arcana_ framework.
 
 How to Customise
 -----------------
