@@ -21,6 +21,7 @@ How to Customise
 
 After creating a new repository on GitHub from this template, there are a few things you
 will need to change:
+
 #. do a global search and replace (across all file-types) for 'changeme' and replace it
 with the proposed name for your extension
 #. change the author and maintainer tags in the "[project]" Section of the
