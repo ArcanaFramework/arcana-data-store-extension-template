@@ -26,15 +26,15 @@ will need to change:
 with the proposed name for your extension
 #. change the author and maintainer tags in the "[project]" Section of the
 the ``pyproject.toml`` to your name and email address
-#. There are two template classes for the data store connector `data.local.ExampleLocal`
+#. There are two template classes for the data store connector ``data.local.ExampleLocal``
 for data stored on the local file-system in a specific structure (e.g. BIDS), and
-`data.remote.ExampleRemote` for data stored in remote data repositories. Keep the relevant
+``data.remote.ExampleRemote`` for data stored in remote data repositories. Keep the relevant
 class(es) and rename it(them) to an appropriate name(s)
-#. do a global search and replace to update the code to use the new names for `ExampleLocal`
-and/or `ExampleRemote` you have adopted
-#. install a local development copy of your extension with `pip install -e .[dev,test]`
+#. do a global search and replace to update the code to use the new names for ``ExampleLocal``
+and/or ``ExampleRemote`` you have adopted
+#. install a local development copy of your extension with ``pip install -e .[dev,test]``
 #. Implement the method stubs in your adopted classes, uncommenting corresponding unittests
-in neighbouring `tests/*.py` modules to test until all unittests pass
+in neighbouring ``tests/*.py`` modules to test until all unittests pass
 #. Change the address of the test action badge at the top of this file to point to your
 new repository and uncomment out the other badges
 #. Delete this text and above and uncomment the default contents of this README below,
