@@ -32,7 +32,7 @@ will need to change:
 - install a local development copy of the new extension package with ``pip install -e .[dev,test]`` from inside the code-repo directory (using a virtualenv is recommended)
 - install pre-commit in the development repo with ``pre-commit install``
 - Implement the method stubs of your adopted classes (and ``install_and_launch_app`` in ``conftest.py`` if implementing ``ExampleApp``)
-- Check the methods work by running the unittests with ``pytest`` from inside the code-repo directory. They are set to XFAIL (expected failure) by default so you can focus on them one at a time.
+- Check the methods work by running the unittests with ``pytest`` from inside the code-repo directory. They are set to XFAIL (expected failure) by default so you can focus on implementing one of them at a time.
 - Change the address of the test action badge at the top of this file to point to your new repository and uncomment out the other badges
 - Delete this text and above and uncomment the default contents of this README below, adding in any relevant information about the extension (checking the license is appropriate).
 - Create a new release on GitHub to deploy your new package to PyPI
