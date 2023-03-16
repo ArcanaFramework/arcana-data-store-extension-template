@@ -14,6 +14,7 @@ from arcana.testing.data.blueprint import (
     FieldEntryBlueprint as FieldBP,
 )
 from arcana.core.data.set import Dataset
+from arcana.core.data.row import DataRow
 from arcana.testing import TestDataSpace
 from arcana.core.data.store import DataStore, LocalStore
 from arcana.changeme.data import ExampleLocal, ExampleRemote
@@ -164,3 +165,41 @@ def dataset_defaults(
     else:
         dataset_id = dataset_name
     return run_prefix + dataset_id, space, hierarchy
+
+
+def install_and_launch_app(
+    name: str,
+    command_config: dict,
+    row: DataRow,
+    inputs: dict[str, str],
+    timeout: int = 1000,  # seconds
+    poll_interval: int = 10,  # seconds
+) -> tuple[int, str, str]:
+    """Installs a new command for the XNAT container service and lanches it on
+    the specified session.
+
+    Parameters
+    ----------
+    name : str
+        The name to install the command as
+    command_config : dict[str, Any]
+        JSON that defines the XNAT command in the container service (see `generate_xnat_command`)
+    row : DataRow
+        the row of the dataset to run the app on
+    inputs : dict[str, str]
+        Inputs passed to the pipeline at launch (i.e. typically through text fields in the CS launch UI)
+    timeout : int
+        the time to wait for the pipeline to complete (seconds)
+    poll_interval : int
+        the time interval between status polls (seconds)
+
+    Returns
+    -------
+    workflow_id : int
+        the auto-generated ID for the launched workflow
+    status : str
+        the status of the completed workflow
+    out_str : str
+        stdout and stderr from the workflow run
+    """
+    raise NotImplementedError
