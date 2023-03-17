@@ -1,96 +1,22 @@
 import operator as op
 from functools import reduce
 import pytest
-from pathlib import Path
-import decimal
+from copy import copy
 from fileformats.generic import File
 from fileformats.field import Text as TextField
-from fileformats.text import Plain as PlainText
-from fileformats.generic import Directory
-from fileformats.field import Integer, Decimal, Boolean, Array
-from fileformats.testing import MyFormatGz, MyFormatGzX
 from arcana.core.data.set import Dataset
-from arcana.testing import TestDataSpace
 from arcana.core.utils.serialize import asdict
 from arcana.testing.data.blueprint import (
-    TestDatasetBlueprint,
-    FileSetEntryBlueprint as FileBP,
-    FieldEntryBlueprint as FieldBP,
+    EXTENSION_DATASET_BLUEPRINTS,
+    dataset_defaults,
 )
 from conftest import dataset_defaults
 
 
-TEST_DATASET_BLUEPRINTS = {
-    "complete": TestDatasetBlueprint(  # dataset name
-        space=TestDataSpace,
-        hierarchy=["a", "b", "c", "d"],
-        dim_lengths=[2, 2, 2, 2],
-        entries=[
-            FileBP(path="file1", datatype=PlainText, filenames=["file.txt"]),
-            FileBP(path="file2", datatype=MyFormatGz, filenames=["file.my.gz"]),
-            FileBP(path="file3", datatype=MyFormatGzX, filenames=["file.my.gz", "file.json"]),
-            FileBP(path="dir1", datatype=Directory, filenames=["dir1"]),
-            FieldBP(
-                path="textfield",
-                row_frequency="abcd",
-                datatype=TextField,
-                value="sample-text",
-            ),  # Derivatives to insert
-            FieldBP(
-                path="booleanfield",
-                row_frequency="c",
-                datatype=Boolean,
-                value="no",
-                expected_value=False,
-            ),  # Derivatives to insert
-        ],
-        derivatives=[
-            FileBP(
-                path="deriv1",
-                row_frequency="abcd",
-                datatype=PlainText,
-                filenames=["file1.txt"],
-            ),  # Derivatives to insert
-            FileBP(
-                path="deriv2",
-                row_frequency="c",
-                datatype=Directory,
-                filenames=["dir"],
-            ),
-            FileBP(
-                path="deriv3",
-                row_frequency="bd",
-                datatype=PlainText,
-                filenames=["file1.txt"],
-            ),
-            FieldBP(
-                path="integerfield",
-                row_frequency="c",
-                datatype=Integer,
-                value=99,
-            ),
-            FieldBP(
-                path="decimalfield",
-                row_frequency="bd",
-                datatype=Decimal,
-                value="33.3333",
-                expected_value=decimal.Decimal("33.3333"),
-            ),
-            FieldBP(
-                path="arrayfield",
-                row_frequency="bd",
-                datatype=Array[Integer],
-                value=[1, 2, 3, 4, 5],
-            ),
-        ],
-    ),
-}
-
-
-@pytest.fixture(params=list(TEST_DATASET_BLUEPRINTS))
+@pytest.fixture(params=list(EXTENSION_DATASET_BLUEPRINTS))
 def dataset(data_store, work_dir, run_prefix, request):
     dataset_name = request.param
-    blueprint = TEST_DATASET_BLUEPRINTS[dataset_name]
+    blueprint = copy(EXTENSION_DATASET_BLUEPRINTS[dataset_name])
     dataset_id, space, hierarchy = dataset_defaults(
         data_store, dataset_name, run_prefix, work_dir
     )

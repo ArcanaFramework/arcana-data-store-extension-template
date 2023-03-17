@@ -5,18 +5,11 @@ import tempfile
 from datetime import datetime
 from pathlib import Path
 import pytest
+from copy import copy
 from click.testing import CliRunner
-from fileformats.text import Plain as PlainText
-from fileformats.field import Text as TextField
-from arcana.testing.data.blueprint import (
-    TestDatasetBlueprint,
-    FileSetEntryBlueprint as FileBP,
-    FieldEntryBlueprint as FieldBP,
-)
 from arcana.core.data.set import Dataset
 from arcana.core.data.row import DataRow
-from arcana.testing import TestDataSpace
-from arcana.core.data.store import DataStore, LocalStore
+from arcana.testing.data.blueprint import dataset_defaults, SIMPLE_DATASET
 from arcana.changeme.data import ExampleLocal, ExampleRemote
 from pydra import set_input_validator
 
@@ -34,13 +27,60 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 sch.setFormatter(formatter)
 logger.addHandler(sch)
 
+############
+# CHANGEME #
+############
 
 TEST_STORE_URI = None  # os.environ["ARCANA_CHANGME_TEST_STORE_URI"]
 TEST_STORE_USER = None  # os.environ["ARCANA_CHANGME_TEST_STORE_USER"]
 TEST_STORE_PASSWORD = None  # os.environ["ARCANA_CHANGME_TEST_STORE_USER"]
 
-# Remove this parameterisation if you only implement one of the data store templates
+
+def install_and_launch_app(
+    name: str,
+    command_config: dict,
+    row: DataRow,
+    inputs: dict[str, str],
+    timeout: int = 1000,  # seconds
+    poll_interval: int = 10,  # seconds
+) -> tuple[int, str, str]:
+    """Installs a new command to be run in the integrated workflow engine of the "changeme"
+    data store, then launches it on the specified row with the provided inputs.
+
+    Parameters
+    ----------
+    name : str
+        The name to install the command as
+    command_config : dict[str, Any]
+        JSON that defines the XNAT command in the container service (see `generate_xnat_command`)
+    row : DataRow
+        the row of the dataset to run the app on
+    inputs : dict[str, str]
+        Inputs passed to the pipeline at launch (i.e. typically through text fields in the CS launch UI)
+    timeout : int
+        the time to wait for the pipeline to complete (seconds)
+    poll_interval : int
+        the time interval between status polls (seconds)
+
+    Returns
+    -------
+    workflow_id : int
+        the auto-generated ID for the launched workflow
+    status : str
+        the status of the completed workflow
+    out_str : str
+        stdout and stderr from the workflow run
+    """
+    raise NotImplementedError
+
+
+# Change or remote this parameterisation if you only implement one of the data store templates
 DATA_STORES = ["local", "remote"]
+
+
+############
+# FIXTURES #
+############
 
 
 @pytest.fixture(params=DATA_STORES)
@@ -71,18 +111,13 @@ def data_store(work_dir: Path, request):
 
 @pytest.fixture
 def simple_dataset(data_store, work_dir, run_prefix) -> Dataset:
+    blueprint = copy(SIMPLE_DATASET)
     dataset_id, space, hierarchy = dataset_defaults(
         data_store, "simple", run_prefix, work_dir
     )
-    blueprint = TestDatasetBlueprint(  # dataset name
-        space=space,
-        hierarchy=hierarchy,
-        dim_lengths=[2 for _ in range(len(hierarchy))],
-        entries=[
-            FileBP(path="file1", datatype=PlainText, filenames=["file.txt"]),
-            FieldBP(path="field1", datatype=TextField, value="a field"),
-        ],
-    )
+    blueprint.space = space
+    blueprint.hierarchy = hierarchy
+    blueprint.dim_lengths = [2 for _ in range(len(hierarchy))]
     return blueprint.make_dataset(data_store, dataset_id, name="")
 
 
@@ -128,78 +163,3 @@ else:
 @pytest.fixture
 def catch_cli_exceptions():
     return CATCH_CLI_EXCEPTIONS
-
-
-def dataset_defaults(
-    data_store: DataStore, dataset_name: str, run_prefix: str, work_dir: Path
-) -> tuple[str, type, list[str]]:
-    """Return sensible defaults for the dataset ID, data-space and hierarchy for
-    datasets created in the given data store
-
-    Parameters
-    ----------
-    data_store : DataStore
-        the data store to get the defaults for
-    dataset_name : str
-        the name of the dataset in the test matrix
-
-    Returns
-    -------
-    dataset_id : str
-        the ID for the test dataset
-    space : type
-        the data-space for the dataset
-    hierarchy : list[str]
-        the default hierarchy for the given data store
-    """
-    try:
-        space = data_store.DEFAULT_SPACE
-    except AttributeError:
-        space = TestDataSpace
-    try:
-        hierarchy = data_store.DEFAULT_HIERARCHY
-    except AttributeError:
-        hierarchy = [str(h) for h in max(space).span()]
-    if isinstance(data_store.name, LocalStore):
-        dataset_id = work_dir / dataset_name
-    else:
-        dataset_id = dataset_name
-    return run_prefix + dataset_id, space, hierarchy
-
-
-def install_and_launch_app(
-    name: str,
-    command_config: dict,
-    row: DataRow,
-    inputs: dict[str, str],
-    timeout: int = 1000,  # seconds
-    poll_interval: int = 10,  # seconds
-) -> tuple[int, str, str]:
-    """Installs a new command to be run in the integrated workflow engine of the "changeme"
-    data store, then launches it on the specified row with the provided inputs.
-
-    Parameters
-    ----------
-    name : str
-        The name to install the command as
-    command_config : dict[str, Any]
-        JSON that defines the XNAT command in the container service (see `generate_xnat_command`)
-    row : DataRow
-        the row of the dataset to run the app on
-    inputs : dict[str, str]
-        Inputs passed to the pipeline at launch (i.e. typically through text fields in the CS launch UI)
-    timeout : int
-        the time to wait for the pipeline to complete (seconds)
-    poll_interval : int
-        the time interval between status polls (seconds)
-
-    Returns
-    -------
-    workflow_id : int
-        the auto-generated ID for the launched workflow
-    status : str
-        the status of the completed workflow
-    out_str : str
-        stdout and stderr from the workflow run
-    """
-    raise NotImplementedError
