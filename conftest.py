@@ -5,11 +5,11 @@ import tempfile
 from datetime import datetime
 from pathlib import Path
 import pytest
-from copy import copy
 from click.testing import CliRunner
 from arcana.core.data.set import Dataset
 from arcana.core.data.row import DataRow
-from arcana.testing.data.blueprint import dataset_defaults, SIMPLE_DATASET
+from arcana.testing.data.blueprint import SIMPLE_DATASET
+from arcana.core.data.store import LocalStore
 from arcana.changeme.data import ExampleLocal, ExampleRemote
 from pydra import set_input_validator
 
@@ -111,13 +111,8 @@ def data_store(work_dir: Path, request):
 
 @pytest.fixture
 def simple_dataset(data_store, work_dir, run_prefix) -> Dataset:
-    blueprint = copy(SIMPLE_DATASET)
-    dataset_id, space, hierarchy = dataset_defaults(
-        data_store, "simple", run_prefix, work_dir
-    )
-    blueprint.space = space
-    blueprint.hierarchy = hierarchy
-    blueprint.dim_lengths = [2 for _ in range(len(hierarchy))]
+    blueprint = SIMPLE_DATASET.translate_to(data_store)
+    dataset_id = make_dataset_id(data_store, "simple", work_dir, run_prefix)
     return blueprint.make_dataset(data_store, dataset_id, name="")
 
 
@@ -141,6 +136,10 @@ def cli_runner(catch_cli_exceptions):
 def work_dir() -> Path:
     work_dir = tempfile.mkdtemp()
     return Path(work_dir)
+
+
+def make_dataset_id(data_store, name, work_dir, run_prefix):
+    return work_dir / name if isinstance(data_store, LocalStore) else name + run_prefix
 
 
 # For debugging in IDE's don't catch raised exceptions and let the IDE

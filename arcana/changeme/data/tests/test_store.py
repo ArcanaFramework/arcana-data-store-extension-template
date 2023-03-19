@@ -5,23 +5,19 @@ from copy import copy
 from fileformats.generic import File
 from fileformats.field import Text as TextField
 from arcana.core.data.set import Dataset
+from arcana.core.data.store import LocalStore
 from arcana.core.utils.serialize import asdict
 from arcana.testing.data.blueprint import (
     EXTENSION_DATASET_BLUEPRINTS,
-    dataset_defaults,
 )
-from conftest import dataset_defaults
+from conftest import make_dataset_id
 
 
 @pytest.fixture(params=list(EXTENSION_DATASET_BLUEPRINTS))
 def dataset(data_store, work_dir, run_prefix, request):
     dataset_name = request.param
-    blueprint = copy(EXTENSION_DATASET_BLUEPRINTS[dataset_name])
-    dataset_id, space, hierarchy = dataset_defaults(
-        data_store, dataset_name, run_prefix, work_dir
-    )
-    blueprint.space = space
-    blueprint.hierarchy = hierarchy
+    blueprint = EXTENSION_DATASET_BLUEPRINTS[dataset_name].translate_to(data_store)
+    dataset_id = make_dataset_id(data_store, dataset_name, work_dir, run_prefix)
     dataset = blueprint.make_dataset(data_store, dataset_id)
     return dataset
 

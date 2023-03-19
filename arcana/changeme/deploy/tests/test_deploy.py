@@ -3,9 +3,8 @@ from copy import copy
 import pytest
 from arcana.changeme.deploy import ExampleApp
 from arcana.core.data.set import Dataset
-from arcana.testing.data.blueprint import dataset_defaults, TEST_DATASET_BLUEPRINTS
-from fileformats.text import Plain as PlainText
-from conftest import install_and_launch_app
+from arcana.testing.data.blueprint import TEST_DATASET_BLUEPRINTS
+from conftest import install_and_launch_app, make_dataset_id
 
 
 @pytest.mark.xfail(reason="Hasn't been implemented yet", raises=NotImplementedError)
@@ -44,13 +43,8 @@ def test_app(concatenate_dataset: Dataset, build_spec: dict, work_dir: Path):
 
 @pytest.fixture
 def concatenate_dataset(data_store, work_dir, run_prefix) -> Dataset:
-    dataset_id, space, hierarchy = dataset_defaults(
-        data_store, "concatenate", run_prefix, work_dir
-    )
-    blueprint = copy(TEST_DATASET_BLUEPRINTS["concatenate_test"])
-    blueprint.space = space
-    blueprint.hierarchy = hierarchy
-    blueprint.dim_lengths = ([1 for _ in range(len(hierarchy))],)
+    blueprint = TEST_DATASET_BLUEPRINTS["concatenate_test"].translate_to(data_store)
+    dataset_id = make_dataset_id(data_store, "concatenate", work_dir, run_prefix)
     return blueprint.make_dataset(data_store, dataset_id, name="")
 
 
