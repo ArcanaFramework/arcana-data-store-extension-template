@@ -11,7 +11,7 @@ Arcana Extension - changeme
 ..    :target: https://pypi.python.org/pypi/arcana-changeme/
 ..    :alt: Latest Version
 .. image:: https://github.com/ArcanaFramework/arcana/actions/workflows/docs.yml/badge.svg
-    :target: http://arcana.readthedocs.io/en/latest/?badge=latest
+    :target: https://arcanaframework.github.io/arcana
     :alt: Docs
 
 This repository is a template for Arcana extensions that add `DataStore` and `App` classes for the Arcana_ framework for interacting with custom data management platforms.
