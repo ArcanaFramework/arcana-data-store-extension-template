@@ -80,9 +80,9 @@ class ExampleRemote(RemoteStore):
         dataset_id: str
             The ID/path of the dataset within the store
         definition: dict[str, Any]
-            A dictionary containing the dct Dataset to be saved. The
-            dictionary is in a format ready to be dumped to file as JSON or
-            YAML.
+            A dictionary containing the definition of the dataset to be saved.
+            The dictionary is in a format ready to be dumped to a JSON or
+            YAML file
         name: str
             Name for the dataset definition to distinguish it from other
             definitions for the same directory/project"""
@@ -102,7 +102,8 @@ class ExampleRemote(RemoteStore):
         Returns
         -------
         definition: dict[str, Any]
-            A dct Dataset object that was saved in the data store
+            A dictionary containing the dataset definition that was saved in the
+            data store
         """
         raise NotImplementedError
 
