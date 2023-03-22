@@ -43,8 +43,8 @@ class ExampleRemote(RemoteStore):
 
         Parameters
         ----------
-        dataset : Dataset
-            The dataset to construct the tree dimensions for
+        tree : DataTree
+            the data tree to populate with leaf nodes
         """
         raise NotImplementedError
 
