@@ -4,6 +4,7 @@ import logging
 import tempfile
 from datetime import datetime
 from pathlib import Path
+from unittest.mock import patch
 import pytest
 from click.testing import CliRunner
 from arcana.core.data.set import Dataset
@@ -136,6 +137,15 @@ def cli_runner(catch_cli_exceptions):
 def work_dir() -> Path:
     work_dir = tempfile.mkdtemp()
     return Path(work_dir)
+
+
+@pytest.fixture
+def arcana_home(work_dir):
+    """Sets the ARCANA_HOME environment variable to be inside the work directory, so
+    "user-level" configurations can be set without affecting the host environment"""
+    arcana_home = work_dir / "arcana-home"
+    with patch.dict(os.environ, {"ARCANA_HOME": str(arcana_home)}):
+        yield arcana_home
 
 
 def make_dataset_id(data_store, name, work_dir, run_prefix):

@@ -163,7 +163,7 @@ class ExampleRemote(RemoteStore):
         leaves: list[tuple[str, ...]],
         space: type,
         hierarchy: list[str],
-        id_composition: dict[str, str],
+        id_patterns: dict[str, str],
         **kwargs,
     ):
         """Creates a new dataset within the store, then creates an empty data tree
@@ -183,7 +183,7 @@ class ExampleRemote(RemoteStore):
             the "space" of the dataset
         hierarchy : list[str]
             the hierarchy of the dataset to be created
-        id_composition : dict[str, str]
+        id_patterns : dict[str, str]
             Not all IDs will appear explicitly within the hierarchy of the data
             tree, and some will need to be inferred by extracting components of
             more specific labels.
@@ -198,7 +198,7 @@ class ExampleRemote(RemoteStore):
             containing ID to source the inferred IDs from coupled with a regular
             expression with named groups
 
-                id_composition = {
+                id_patterns = {
                     'subject': r'(?P<group>[A-Z]+)(?P<member>[0-9]+)')
                 }
         **kwargs

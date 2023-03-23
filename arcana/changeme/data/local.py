@@ -78,7 +78,7 @@ class ExampleLocal(LocalStore):
         leaves: list[tuple[str, ...]],
         hierarchy: list[str],
         space: type,
-        id_composition: dict[str, str],
+        id_patterns: dict[str, str],
         **kwargs,
     ):
         """Creates a new empty dataset within in the store. Used in test routines and
