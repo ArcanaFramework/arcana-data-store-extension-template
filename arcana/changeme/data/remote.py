@@ -163,7 +163,6 @@ class ExampleRemote(RemoteStore):
         leaves: list[tuple[str, ...]],
         space: type,
         hierarchy: list[str],
-        id_patterns: dict[str, str],
         **kwargs,
     ):
         """Creates a new dataset within the store, then creates an empty data tree
@@ -184,23 +183,8 @@ class ExampleRemote(RemoteStore):
         hierarchy : list[str]
             the hierarchy of the dataset to be created
         id_patterns : dict[str, str]
-            Not all IDs will appear explicitly within the hierarchy of the data
-            tree, and some will need to be inferred by extracting components of
-            more specific labels.
-
-            For example, given a set of subject IDs that combination of the ID of
-            the group that they belong to and the member ID within that group
-            (i.e. matched test & control would have same member ID)
-
-                CONTROL01, CONTROL02, CONTROL03, ... and TEST01, TEST02, TEST03
-
-            the group ID can be extracted by providing the a list of tuples
-            containing ID to source the inferred IDs from coupled with a regular
-            expression with named groups
-
-                id_patterns = {
-                    'subject': r'(?P<group>[A-Z]+)(?P<member>[0-9]+)')
-                }
+            Patterns for inferring IDs of rows not explicitly present in the hierarchy of
+            the data tree. See ``DataStore.infer_ids()`` for syntax
         **kwargs
             Not used, but should be kept here to allow compatibility with future
             stores that may need to be passed other arguments
