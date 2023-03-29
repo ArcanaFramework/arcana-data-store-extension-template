@@ -41,6 +41,10 @@ class ExampleRemote(RemoteStore):
         tree with those found in the dataset using the ``DataTree.add_leaf`` method for
         every "leaf" node of the dataset tree.
 
+        The order that the tree leaves are added is important and should be consistent
+        between reads, because it is used to give default values to the ID's of data
+        space axes not explicitly in the hierarchy of the tree.
+
         Parameters
         ----------
         tree : DataTree
