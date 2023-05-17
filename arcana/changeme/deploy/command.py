@@ -10,7 +10,7 @@ if ty.TYPE_CHECKING:
 @attrs.define(kw_only=True)
 class ExampleCommand(ContainerCommand):
 
-    image: ExampleApp = None
+    image: ty.Optional[ExampleApp] = None
 
     # Hard-code the data_space of XNAT commands to be clinical
     # DATA_SPACE = Clinical
@@ -38,9 +38,7 @@ class ExampleCommand(ContainerCommand):
         config["command-line"] = (
             self.activate_conda_cmd()
             + "arcana ext xnat cs-entrypoint xnat-cs//[PROJECT_ID] "
-            + " ".join(
-                input_args + output_args + param_args + [flag_arg]
-            )
+            + " ".join(input_args + output_args + param_args + [flag_arg])
         )
 
         return config
