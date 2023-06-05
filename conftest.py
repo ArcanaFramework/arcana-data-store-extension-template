@@ -12,9 +12,13 @@ from arcana.core.data.row import DataRow
 from arcana.testing.data.blueprint import SIMPLE_DATASET
 from arcana.core.data.store import LocalStore
 from arcana.changeme.data import ExampleLocal, ExampleRemote
-from pydra import set_input_validator
 
-set_input_validator(True)
+try:
+    from pydra import set_input_validator
+
+    set_input_validator(True)
+except ImportError:
+    pass
 
 # Set DEBUG logging for unittests if required
 log_level = logging.WARNING
