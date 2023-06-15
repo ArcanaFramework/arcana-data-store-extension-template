@@ -2,7 +2,7 @@ from __future__ import annotations
 import typing as ty
 import logging
 import attrs
-from fileformats.core.base import FileSet, Field
+from fileformats.core import FileSet, Field
 from arcana.core.data.set.base import DataTree
 from arcana.core.data.row import DataRow
 from arcana.core.data.entry import DataEntry

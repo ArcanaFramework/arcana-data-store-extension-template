@@ -2,7 +2,7 @@ from __future__ import annotations
 import typing as ty
 from pathlib import Path
 import attrs
-from fileformats.core.base import FileSet
+from fileformats.core import FileSet
 from arcana.core.data.store import RemoteStore
 from arcana.core.data.row import DataRow
 from arcana.core.data.tree import DataTree
