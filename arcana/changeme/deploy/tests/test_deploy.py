@@ -73,7 +73,7 @@ def build_spec(run_prefix):
             "task": "arcana.testing.tasks:concatenate",
             "inputs": {
                 "first_file": {
-                    "datatype": "fileformats.text:Plain",
+                    "datatype": "text/text-file",
                     "field": "in_file1",
                     "default_column": {
                         "row_frequency": "session",
@@ -81,7 +81,7 @@ def build_spec(run_prefix):
                     "help_string": "the first file to pass as an input",
                 },
                 "second_file": {
-                    "datatype": "fileformats.text:Plain",
+                    "datatype": "text/text-file",
                     "field": "in_file2",
                     "default_column": {
                         "row_frequency": "session",
@@ -91,7 +91,7 @@ def build_spec(run_prefix):
             },
             "outputs": {
                 "concatenated": {
-                    "datatype": "fileformats.text:Plain",
+                    "datatype": "text/text-file",
                     "field": "out_file",
                     "help_string": "an output file",
                 }
