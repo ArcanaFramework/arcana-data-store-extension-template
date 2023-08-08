@@ -53,10 +53,14 @@ def build_spec(run_prefix):
     return {
         "org": "arcana-tests",
         "name": "concatenate-app" + run_prefix,
-        "version": "1.0",
+        "version": {
+            "package": "1.0",
+        },
         "description": "A pipeline to test deployment to changme data stores",
+        "docs": {
+            "info_url": "http://concatenate.readthefakedocs.io",
+        },
         "authors": [{"name": "Some One", "email": "some.one@an.email.org"}],
-        "info_url": "http://concatenate.readthefakedocs.io",
         "readme": "This is a test README",
         "registry": "a.docker.registry.io",
         "packages": {
