@@ -75,25 +75,25 @@ def build_spec(run_prefix):
                 "first_file": {
                     "datatype": "text/text-file",
                     "field": "in_file1",
-                    "default_column": {
+                    "column_defaults": {
                         "row_frequency": "session",
                     },
-                    "help_string": "the first file to pass as an input",
+                    "help": "the first file to pass as an input",
                 },
                 "second_file": {
                     "datatype": "text/text-file",
                     "field": "in_file2",
-                    "default_column": {
+                    "column_defaults": {
                         "row_frequency": "session",
                     },
-                    "help_string": "the second file to pass as an input",
+                    "help": "the second file to pass as an input",
                 },
             },
             "outputs": {
                 "concatenated": {
                     "datatype": "text/text-file",
                     "field": "out_file",
-                    "help_string": "an output file",
+                    "help": "an output file",
                 }
             },
             "parameters": {
@@ -102,7 +102,7 @@ def build_spec(run_prefix):
                     "default": 2,
                     "datatype": "int",
                     "required": True,
-                    "help_string": "a parameter",
+                    "help": "a parameter",
                 }
             },
             "row_frequency": "session",
